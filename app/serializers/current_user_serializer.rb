@@ -17,7 +17,7 @@
 # frozen_string_literal: true
 
 class CurrentUserSerializer < UserSerializer
-  attributes :signed_in, :permissions, :status, :super_admin
+  attributes :signed_in, :permissions, :status, :super_admin, :provider_admin
 
   def signed_in
     true
@@ -32,5 +32,9 @@ class CurrentUserSerializer < UserSerializer
 
   def super_admin
     object.super_admin?
+  end
+
+  def provider_admin
+    object.provider_admin?
   end
 end

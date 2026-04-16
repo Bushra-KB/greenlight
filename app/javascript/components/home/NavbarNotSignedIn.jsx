@@ -32,7 +32,6 @@ const NAV_COPY = {
     pricing: 'Pricing',
     faq: 'FAQ',
     signIn: 'Sign In',
-    bookDemo: 'Book a Demo',
   },
   tr: {
     features: 'Özellikler',
@@ -40,7 +39,6 @@ const NAV_COPY = {
     pricing: 'Fiyatlandırma',
     faq: 'SSS',
     signIn: 'Giriş Yap',
-    bookDemo: 'Demo Talebi',
   },
 };
 
@@ -96,7 +94,6 @@ export default function NavbarNotSignedIn() {
             </button>
           </div>
           <Nav.Link href="/signin" className="ak-mobile-signin-link">{copy.signIn}</Nav.Link>
-          <a href="/#demo-form" className="btn btn-brand ak-book-demo-btn ak-book-demo-btn-mobile">{copy.bookDemo}</a>
         </Nav>
       </Navbar.Collapse>
 
@@ -128,7 +125,6 @@ export default function NavbarNotSignedIn() {
           </Dropdown.Menu>
         </Dropdown>
         <a href="/signin" className="ak-signin-link">{copy.signIn}</a>
-        <a href="/#demo-form" className="btn btn-brand ak-book-demo-btn">{copy.bookDemo}</a>
       </div>
     </>
   );

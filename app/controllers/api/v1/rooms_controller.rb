@@ -89,13 +89,20 @@ module Api
       # GET /api/v1/rooms.json
       # Returns a list of the current_user's rooms and shared rooms
       def index
-        shared_rooms = SharedAccess.where(user_id: current_user.id).select(:room_id)
-        rooms = Room.includes(:user)
-                    .where(user_id: current_user.id)
-                    .or(Room.where(id: shared_rooms))
-                    .order(online: :desc)
-                    .order('last_session DESC NULLS LAST')
-                    .search(params[:search])
+        rooms = if current_user.provider_admin?
+                  Room.joins(:user)
+                      .includes(:user)
+                      .where(users: { provider: current_provider })
+                else
+                  shared_rooms = SharedAccess.where(user_id: current_user.id).select(:room_id)
+                  Room.includes(:user)
+                      .where(user_id: current_user.id)
+                      .or(Room.where(id: shared_rooms))
+                end
+
+        rooms = rooms.order(online: :desc)
+                     .order('last_session DESC NULLS LAST')
+                     .search(params[:search])
 
         rooms.map do |room|
           room.shared = true if room.user_id != current_user.id

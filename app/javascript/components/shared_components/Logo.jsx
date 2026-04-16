@@ -35,7 +35,7 @@ export default function Logo({ size }) {
   return (
     <div className={sizeWrapperClass}>
       <Image
-        src={AKADEMIO_LOGO || brandingImage}
+        src={brandingImage || AKADEMIO_LOGO}
         className={sizeClass}
         alt="CompanyLogo"
         onClick={() => { navigate('/'); }}

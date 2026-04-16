@@ -1307,12 +1307,16 @@ function useExtRooms() {
 }
 
 function ScheduleWorkspace({
-  copy, language, actorName, availableRooms, roomDirectory,
+  copy, language, actorName, availableRooms, roomDirectory, allowGlobalScope = false,
 }) {
   const scheduleCopy = copy.schedulePanel;
   const roomOptions = useMemo(() => buildRoomOptions(availableRooms, roomDirectory, 'meeting'), [availableRooms, roomDirectory]);
   const allRoomIds = useMemo(() => roomOptions.map((room) => room.id), [roomOptions]);
   const [selectedRoom, setSelectedRoom] = useState('');
+  const effectiveSelectedRoom = useMemo(() => {
+    if (allowGlobalScope) return selectedRoom;
+    return selectedRoom || roomOptions[0]?.id || '';
+  }, [allowGlobalScope, roomOptions, selectedRoom]);
   const [scheduledMeetings, setScheduledMeetings] = useState([]);
   const [recentMeetings, setRecentMeetings] = useState([]);
   const [status, setStatus] = useState({ message: '', error: false });
@@ -1344,31 +1348,41 @@ function ScheduleWorkspace({
   });
 
   useEffect(() => {
+    if (allowGlobalScope) return;
+    if (selectedRoom || !roomOptions.length) return;
+    setSelectedRoom(roomOptions[0].id);
+  }, [allowGlobalScope, roomOptions, selectedRoom]);
+
+  useEffect(() => {
     if (!roomOptions.length) return;
 
     setForm((prev) => {
       if (prev.room) return prev;
       return {
         ...prev,
-        room: selectedRoom || roomOptions[0].id,
+        room: effectiveSelectedRoom || roomOptions[0].id,
       };
     });
-  }, [roomOptions, selectedRoom]);
+  }, [effectiveSelectedRoom, roomOptions]);
 
   useEffect(() => {
-    if (!selectedRoom) return;
+    if (!effectiveSelectedRoom) return;
 
     setForm((prev) => {
-      if (prev.room === selectedRoom) return prev;
+      if (prev.room === effectiveSelectedRoom) return prev;
       return {
         ...prev,
-        room: selectedRoom,
+        room: effectiveSelectedRoom,
       };
     });
-  }, [selectedRoom]);
+  }, [effectiveSelectedRoom]);
 
-  const loadAllSessions = useCallback(async (roomId = selectedRoom, silent = false) => {
-    const roomIds = roomId ? [roomId] : allRoomIds;
+  const loadAllSessions = useCallback(async (roomId = effectiveSelectedRoom, silent = false) => {
+    const roomIds = roomId
+      ? [roomId]
+      : allowGlobalScope
+        ? allRoomIds
+        : (effectiveSelectedRoom ? [effectiveSelectedRoom] : []);
 
     if (!roomIds.length) {
       setScheduledMeetings([]);
@@ -1383,6 +1397,7 @@ function ScheduleWorkspace({
       recentParams.set('limit', '500');
       recentParams.set('includeEnded', '1');
       if (roomId) recentParams.set('room', roomId);
+      if (!roomId && !allowGlobalScope && effectiveSelectedRoom) recentParams.set('room', effectiveSelectedRoom);
 
       const [scheduled, recent] = await Promise.all([
         Promise.all(
@@ -1409,11 +1424,11 @@ function ScheduleWorkspace({
     } finally {
       setLoadingSessions(false);
     }
-  }, [allRoomIds, scheduleCopy.loadedMessage, selectedRoom]);
+  }, [allRoomIds, allowGlobalScope, effectiveSelectedRoom, scheduleCopy.loadedMessage]);
 
   useEffect(() => {
-    loadAllSessions(selectedRoom);
-  }, [loadAllSessions, selectedRoom]);
+    loadAllSessions(effectiveSelectedRoom);
+  }, [effectiveSelectedRoom, loadAllSessions]);
 
   const setField = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -1451,7 +1466,7 @@ function ScheduleWorkspace({
         endAt: '',
       }));
       setShowPlannerModal(false);
-      await loadAllSessions(selectedRoom, true);
+      await loadAllSessions(effectiveSelectedRoom, true);
     } catch (err) {
       setStatus({ message: normalizeExtError(err), error: true });
     }
@@ -1464,7 +1479,7 @@ function ScheduleWorkspace({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: String(id) }),
       });
-      await loadAllSessions(selectedRoom, true);
+      await loadAllSessions(effectiveSelectedRoom, true);
       setStatus({ message: scheduleCopy.cancelledMessage, error: false });
     } catch (err) {
       setStatus({ message: normalizeExtError(err), error: true });
@@ -1488,7 +1503,7 @@ function ScheduleWorkspace({
         body: JSON.stringify({ id: String(meeting.scheduleId) }),
       });
 
-      await loadAllSessions(selectedRoom, true);
+      await loadAllSessions(effectiveSelectedRoom, true);
       setStatus({ message: scheduleCopy.startedNowMessage, error: false });
 
       if (joinUrl) {
@@ -1657,14 +1672,15 @@ function ScheduleWorkspace({
 
   const filteredMeetings = useMemo(() => {
     const searchValue = searchTerm.trim().toLowerCase();
+    const roomFilter = allowGlobalScope ? selectedRoom : effectiveSelectedRoom;
 
     return sessionRows.filter((meeting) => {
-      const matchesRoom = !selectedRoom || meeting.roomId === selectedRoom;
+      const matchesRoom = !roomFilter || meeting.roomId === roomFilter;
       const matchesStatus = statusFilter === 'all' || meeting.sessionState.key === statusFilter;
       const matchesSearch = !searchValue || meeting.searchValue.includes(searchValue);
       return matchesRoom && matchesStatus && matchesSearch;
     });
-  }, [searchTerm, selectedRoom, sessionRows, statusFilter]);
+  }, [allowGlobalScope, effectiveSelectedRoom, searchTerm, selectedRoom, sessionRows, statusFilter]);
 
   const sessionStats = useMemo(() => {
     const upcoming = sessionRows.filter((meeting) => meeting.sessionState.key === 'scheduled');
@@ -2031,7 +2047,7 @@ function ScheduleWorkspace({
 
   useEffect(() => {
     setTablePage(1);
-  }, [rowsPerPage, searchTerm, selectedRoom, statusFilter]);
+  }, [rowsPerPage, searchTerm, effectiveSelectedRoom, selectedRoom, statusFilter]);
 
   const totalPages = Math.max(Math.ceil(filteredMeetings.length / rowsPerPage), 1);
   const safePage = Math.min(tablePage, totalPages);
@@ -2047,8 +2063,10 @@ function ScheduleWorkspace({
     return filteredMeetings.slice(startIndex, startIndex + rowsPerPage);
   }, [filteredMeetings, rowsPerPage, safePage]);
 
-  const roomIcsHref = selectedRoom ? `/ext/future-meetings/ics?room=${encodeURIComponent(selectedRoom)}` : '';
-  const hasActiveFilters = !!selectedRoom || statusFilter !== 'all' || !!searchTerm.trim();
+  const roomIcsHref = (allowGlobalScope ? selectedRoom : effectiveSelectedRoom)
+    ? `/ext/future-meetings/ics?room=${encodeURIComponent(allowGlobalScope ? selectedRoom : effectiveSelectedRoom)}`
+    : '';
+  const hasActiveFilters = (allowGlobalScope && !!selectedRoom) || statusFilter !== 'all' || !!searchTerm.trim();
   const reportCsvHref = reportMeeting?.meetingIntId ? `/ext/export/attendance.csv?meeting_int_id=${encodeURIComponent(reportMeeting.meetingIntId)}&includeChecks=1` : '';
   const reportJsonHref = reportMeeting?.meetingIntId ? `/ext/export/attendance.json?meeting_int_id=${encodeURIComponent(reportMeeting.meetingIntId)}&includeChecks=1` : '';
   const participantAnalyticsRows = selectedParticipantRow ? [
@@ -2124,7 +2142,9 @@ function ScheduleWorkspace({
             <label className="ak-workspace-field">
               <span>{scheduleCopy.room}</span>
               <select className="ak-workspace-select" value={selectedRoom} onChange={(event) => setSelectedRoom(event.target.value)}>
-                <option value="">{roomOptions.length ? scheduleCopy.allRooms : scheduleCopy.loadingRooms}</option>
+                {allowGlobalScope && (
+                  <option value="">{roomOptions.length ? scheduleCopy.allRooms : scheduleCopy.loadingRooms}</option>
+                )}
                 {roomOptions.map((room) => <option key={room.id} value={room.id}>{room.name}</option>)}
               </select>
             </label>
@@ -2154,22 +2174,24 @@ function ScheduleWorkspace({
                 type="button"
                 className="ak-workspace-row-btn"
                 onClick={() => {
-                  setSelectedRoom('');
+                  setSelectedRoom(allowGlobalScope ? '' : (roomOptions[0]?.id || ''));
                   setStatusFilter('all');
                   setSearchTerm('');
                 }}
               >
                 {scheduleCopy.resetFilters}
               </button>
-              <button type="button" className="ak-workspace-row-btn" onClick={() => loadAllSessions(selectedRoom)}>
+              <button type="button" className="ak-workspace-row-btn" onClick={() => loadAllSessions(allowGlobalScope ? selectedRoom : effectiveSelectedRoom)}>
                 {scheduleCopy.reload}
               </button>
               <button type="button" className="ak-workspace-primary-btn" onClick={() => setShowPlannerModal(true)}>
                 {scheduleCopy.openPlanner}
               </button>
-              <a href="/ext/future-meetings/ics/all" className="ak-workspace-link-btn" target="_blank" rel="noreferrer">
-                {scheduleCopy.globalIcs}
-              </a>
+              {allowGlobalScope && (
+                <a href="/ext/future-meetings/ics/all" className="ak-workspace-link-btn" target="_blank" rel="noreferrer">
+                  {scheduleCopy.globalIcs}
+                </a>
+              )}
               {roomIcsHref && (
                 <a href={roomIcsHref} className="ak-workspace-link-btn" target="_blank" rel="noreferrer">
                   {scheduleCopy.roomIcs}
@@ -2191,7 +2213,9 @@ function ScheduleWorkspace({
             icon={CalendarDaysIcon}
             label={scheduleCopy.statsLoaded}
             value={loadingSessions ? '...' : sessionStats.total}
-            helper={selectedRoom ? getRoomName(selectedRoom, roomDirectory) : scheduleCopy.allRooms}
+            helper={(allowGlobalScope ? selectedRoom : effectiveSelectedRoom)
+              ? getRoomName(allowGlobalScope ? selectedRoom : effectiveSelectedRoom, roomDirectory)
+              : scheduleCopy.allRooms}
           />
           <MetricCard
             accent="blue"
@@ -2546,9 +2570,13 @@ function ScheduleWorkspace({
   );
 }
 
-function AnalyticsWorkspace({ copy, language }) {
+function AnalyticsWorkspace({ copy, language, allowGlobalScope = false }) {
   const { rooms, loading: roomsLoading } = useExtRooms();
   const [selectedRoom, setSelectedRoom] = useState('');
+  const effectiveSelectedRoom = useMemo(() => {
+    if (allowGlobalScope) return selectedRoom;
+    return selectedRoom || rooms[0]?.id || '';
+  }, [allowGlobalScope, rooms, selectedRoom]);
   const [recentMeetings, setRecentMeetings] = useState([]);
   const [selectedMeeting, setSelectedMeeting] = useState('');
   const [timelineLimit, setTimelineLimit] = useState('100');
@@ -2564,6 +2592,12 @@ function AnalyticsWorkspace({ copy, language }) {
   });
 
   useEffect(() => {
+    if (allowGlobalScope) return;
+    if (selectedRoom || !rooms.length) return;
+    setSelectedRoom(rooms[0].id);
+  }, [allowGlobalScope, rooms, selectedRoom]);
+
+  useEffect(() => {
     let active = true;
 
     const loadMeetings = async () => {
@@ -2572,7 +2606,7 @@ function AnalyticsWorkspace({ copy, language }) {
         const params = new URLSearchParams();
         params.set('limit', '150');
         params.set('includeEnded', '1');
-        if (selectedRoom) params.set('room', selectedRoom);
+        if (effectiveSelectedRoom) params.set('room', effectiveSelectedRoom);
         const data = await fetchExtJson(`/ext/recent-meetings?${params.toString()}`);
         if (!active) return;
         const meetings = normalizeObjectList(data.meetings);
@@ -2596,7 +2630,7 @@ function AnalyticsWorkspace({ copy, language }) {
     return () => {
       active = false;
     };
-  }, [selectedRoom]);
+  }, [effectiveSelectedRoom]);
 
   useEffect(() => {
     let active = true;
@@ -2659,7 +2693,7 @@ function AnalyticsWorkspace({ copy, language }) {
           <label className="ak-workspace-field">
             <span>Room</span>
             <select className="ak-workspace-select" value={selectedRoom} onChange={(event) => setSelectedRoom(event.target.value)}>
-              <option value="">{roomsLoading ? 'Loading rooms...' : 'All rooms'}</option>
+              {allowGlobalScope && <option value="">{roomsLoading ? 'Loading rooms...' : 'All rooms'}</option>}
               {rooms.map((room) => <option key={room.id} value={room.id}>{room.label}</option>)}
             </select>
           </label>
@@ -4132,6 +4166,12 @@ export default function Rooms({ forcedView = null, hideTabs = false, embedded = 
   const copy = WORKSPACE_COPY[language];
 
   const isAdmin = currentUser?.isSuperAdmin || PermissionChecker.isAdmin(currentUser);
+  const roleName = String(currentUser?.role?.name || '').trim().toLowerCase();
+  const canViewAllRoomsScope = Boolean(
+    currentUser?.isSuperAdmin
+    || currentUser?.isProviderAdmin
+    || roleName === 'administrator',
+  );
   const canCreateRoom = PermissionChecker.hasCreateRoom(currentUser);
   const canViewRecordings = recordValue !== 'false';
   const canManageRooms = PermissionChecker.hasManageRooms(currentUser);
@@ -4241,11 +4281,12 @@ export default function Rooms({ forcedView = null, hideTabs = false, embedded = 
             actorName={currentUser?.name || 'ops-admin'}
             availableRooms={rooms}
             roomDirectory={roomDirectoryByMeetingId}
+            allowGlobalScope={canViewAllRoomsScope}
           />
         );
       case 'analytics':
         return (
-          <AnalyticsWorkspace copy={copy} language={language} />
+          <AnalyticsWorkspace copy={copy} language={language} allowGlobalScope={canViewAllRoomsScope} />
         );
       case 'admin':
         return (

@@ -245,6 +245,102 @@
   color: #b91c1c;
 }
 
+.ak-user-dropdown-shell {
+  position: relative;
+  z-index: 1040;
+}
+
+.ak-user-dropdown-shell .dropdown-toggle {
+  appearance: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  background: #ffffff;
+  color: #1f2937 !important;
+  min-height: 44px;
+  padding: 0.35rem 0.7rem !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ak-user-dropdown-shell .dropdown-toggle:hover,
+.ak-user-dropdown-shell .dropdown-toggle:focus,
+.ak-user-dropdown-shell .dropdown-toggle:active,
+.ak-user-dropdown-shell.show .dropdown-toggle {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.ak-user-dropdown-shell .dropdown-toggle::after {
+  display: none !important;
+}
+
+.ak-user-dropdown-toggle-content {
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ak-user-dropdown-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.ak-user-dropdown-chevron {
+  color: #94a3b8;
+}
+
+.ak-user-dropdown-shell .dropdown-menu {
+  min-width: 12.5rem;
+  margin-top: 0.55rem !important;
+  z-index: 1045;
+}
+
+.ak-user-dropdown-menu {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  padding: 0.35rem;
+  background: #ffffff;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+}
+
+.ak-user-dropdown-menu .dropdown-divider {
+  margin: 0.35rem 0;
+  border-top-color: #e2e8f0;
+}
+
+.ak-user-dropdown-item {
+  display: flex;
+  align-items: center;
+  border-radius: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
+  color: #1f2937 !important;
+  background: transparent;
+  text-decoration: none;
+}
+
+.ak-user-dropdown-item:hover,
+.ak-user-dropdown-item:focus {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+.ak-user-dropdown-item:active,
+.ak-user-dropdown-item.active {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+.ak-user-signout-btn {
+  min-height: 40px;
+  border-radius: 0.75rem;
+  font-weight: 800;
+}
+
 .ak-lang-icon,
 .ak-lang-chevron {
   width: 1rem;

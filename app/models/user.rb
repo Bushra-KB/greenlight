@@ -210,6 +210,16 @@ class User < ApplicationRecord
     role.name == 'SuperAdmin' && role.provider == 'bn'
   end
 
+  # Tenant-scoped admin (not global super admin).
+  def administrator?
+    role&.name == 'Administrator' && role&.provider == provider
+  end
+
+  # Can view tenant-wide data inside the same provider.
+  def provider_admin?
+    super_admin? || administrator?
+  end
+
   def check_user_role_provider
     return unless role
 

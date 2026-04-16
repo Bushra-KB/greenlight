@@ -47,6 +47,7 @@ export default function AuthProvider({ children }) {
     external_account: currentUser?.external_account,
     stateChanging,
     isSuperAdmin: currentUser?.super_admin,
+    isProviderAdmin: currentUser?.provider_admin,
     setStateChanging,
   };
 

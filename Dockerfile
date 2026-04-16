@@ -38,8 +38,6 @@ RUN apk update \
     && yarn install --production --frozen-lockfile \
     && yarn cache clean
 COPY . ./
-RUN apk update \
-    && apk upgrade
 
 EXPOSE ${PORT}
 ENTRYPOINT [ "./bin/start" ]

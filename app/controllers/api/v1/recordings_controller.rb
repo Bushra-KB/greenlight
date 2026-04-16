@@ -37,7 +37,11 @@ module Api
         items = 5 if items <= 0
         items = items.clamp(5, 100)
 
-        recordings_scope = current_user.recordings
+        recordings_scope = if current_user.provider_admin?
+                             Recording.joins(room: :user).where(users: { provider: current_provider })
+                           else
+                             current_user.recordings
+                           end
         recordings_scope = recordings_scope.joins(:room).where(room: { friendly_id: params[:room] }) if params[:room].present?
         recordings_scope = recordings_scope.where(visibility: params[:visibility]) if params[:visibility].present?
         recordings_scope = if params[:search].present?
@@ -91,7 +95,11 @@ module Api
       # GET /api/v1/recordings/recordings_count.json
       # Returns the total number of recordings for the current_user
       def recordings_count
-        count = current_user.recordings.count
+        count = if current_user.provider_admin?
+                  Recording.joins(room: :user).where(users: { provider: current_provider }).count
+                else
+                  current_user.recordings.count
+                end
         render_data data: count, status: :ok
       end
 

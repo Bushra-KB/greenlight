@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 hu_HU:
   opengraph:
-    description: "Tanuljon a BigBlueButton, a megbízható, nyílt forráskódú webkonferencia-megoldás használatával, amely zökkenőmentes virtuális együttműködést és online tanulási élményt tesz lehetővé."
+    description: "Tanuljon a Akademio Live, a megbízható, nyílt forráskódú webkonferencia-megoldás használatával, amely zökkenőmentes virtuális együttműködést és online tanulási élményt tesz lehetővé."
   meeting:
     moderator_message: "Az előadásra meghíváshoz, ossza meg az alábbi linket:"
     access_code: "Hozzáférési kód: %{code}"
   email:
     activation:
       account_activation: Fiókaktiválás
-      welcome_to_bbb: A BigBlueButton üdvözli.
+      welcome_to_bbb: A Akademio Live üdvözli.
       get_started: A kezdéshez aktiválja fiókját az alábbi gombra kattintással.
       activate_account: Fiók aktiválása
       link_expires: Ez a link 24 óra múlva lejár.
       if_link_expires: "Ha a link már lejárt, jelentkezzen be és kérjen egy új aktiváló e-mailt."
     invitation:
-      invitation_to_join: BigBlueButton meghívó
+      invitation_to_join: Akademio Live meghívó
       you_have_been_invited: "Meghívták, hogy készítsen egy BigblueButton fiókot %{name} e-mail címmel."
       get_started: A regisztrációhoz kattintson az alábbi gombra és hajtsa végre a lépéseket.
       valid_invitation: A meghívás 7 napig érvényes.
       sign_up: Regisztráció
     new_user_signup:
-      new_user: Új BigBlueButton felhasználó regisztráció
-      new_user_description: "Egy új felhasználó regisztrált, hogy használhassa a BigBlueButton-t."
+      new_user: Új Akademio Live felhasználó regisztráció
+      new_user_description: "Egy új felhasználó regisztrált, hogy használhassa a Akademio Live-t."
       name: "Név: %{name}"
       email: "E-mail: %{email}"
       admin_panel: "Üzemeltetői panel"

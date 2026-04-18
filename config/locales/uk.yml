@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 uk:
   opengraph:
-    description: "Навчайтеся за допомогою BigBlueButton, перевіреного рішення з відкритим кодом для веб-конференцій, яке забезпечує безперебійну віртуальну співпрацю та онлайн-навчання."
+    description: "Навчайтеся за допомогою Akademio Live, перевіреного рішення з відкритим кодом для веб-конференцій, яке забезпечує безперебійну віртуальну співпрацю та онлайн-навчання."
   meeting:
     moderator_message: "Щоб запросити когось на зустріч, надайте це посилання:"
     access_code: "Код доступу: %{code}"
   email:
     activation:
       account_activation: Активація облікового запису
-      welcome_to_bbb: Вітаємо в BigBlueButton!
+      welcome_to_bbb: Вітаємо в Akademio Live!
       get_started: "Щоб розпочати, будь ласка, активуйте обліковий запис натиснувши кнопку внизу."
       activate_account: Активуйте обліковий запис
       link_expires: Посилання буде дійсним протягом 24 годин.
       if_link_expires: "Якщо посилання втратить дійсність, виконайте вхід та зробіть запит на новий лист."
     invitation:
-      invitation_to_join: Запрошення доєднатись до BigBlueButton
-      you_have_been_invited: "Вас було запрошено створити обліковий запис в BigBlueButton користувачем %{name}"
+      invitation_to_join: Запрошення доєднатись до Akademio Live
+      you_have_been_invited: "Вас було запрошено створити обліковий запис в Akademio Live користувачем %{name}"
       get_started: "Щоб зареєструватись, натисніть кнопку знизу та слідуйте подальшим крокам."
       valid_invitation: Запрошення дійсне протягом 24 годин.
       sign_up: Реєстрація
     new_user_signup:
-      new_user: Нова реєстрація користувача BigBlueButton
-      new_user_description: Новий користувач зареєструвався для використання BigBlueButton.
+      new_user: Нова реєстрація користувача Akademio Live
+      new_user_description: Новий користувач зареєструвався для використання Akademio Live.
       name: "Ім'я: %{name}"
       email: "Електронна пошта: %{email}"
       admin_panel: "Панель адміністратора"

@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 cs:
   opengraph:
-    description: Učte pomocí BigBlueButton - důvěryhodné open-source web videokonferenční platformy.
+    description: Učte pomocí Akademio Live - důvěryhodné open-source web videokonferenční platformy.
   meeting:
     moderator_message: "Další osoby pozvete na konferenci tím, že jim zašlete následující odkaz:"
     access_code: "Přístupový kód: %{code}"
   email:
     activation:
       account_activation: Aktivace účtu
-      welcome_to_bbb: Vítejte v BigBlueButton!
+      welcome_to_bbb: Vítejte v Akademio Live!
       get_started: Začněte prosím aktivací účtu kliknutím na tlačítko níže.
       activate_account: Aktivuj účet
       link_expires: Odkaz má platnost 24 hodin.
       if_link_expires: V případě vypršení odlkazu se přihlašte a požádejte o nový aktivační email.
     invitation:
-      invitation_to_join: BigBlueButton pozvánka
-      you_have_been_invited: "%{name} Vás pozval k vytvoření účtu v BigBlueButton platformě."
+      invitation_to_join: Akademio Live pozvánka
+      you_have_been_invited: "%{name} Vás pozval k vytvoření účtu v Akademio Live platformě."
       get_started: Pro registraci nového účtu prosím klikněte na tlačítko níže a postupujte podle instrukcí.
       valid_invitation: Pozvánka má platnost 7 dní.
       sign_up: Registrace
     new_user_signup:
-      new_user: Nová registrace uživatele BigBlueButton
-      new_user_description: Nový uživatel se registroval do platformy BigBlueButton.
+      new_user: Nová registrace uživatele Akademio Live
+      new_user_description: Nový uživatel se registroval do platformy Akademio Live.
       name: "Jméno: %{name}"
       email: "Email: %{email}"
       admin_panel: "Administrační panel"

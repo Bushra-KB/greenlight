@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 tr:
   opengraph:
-    description: "Sorunsuz sanal işbirliği ve çevrim içi öğrenme deneyimleri sağlayan, güvenilir ve açık kaynaklı İnternet üzerinden görüşme çözümü BigBlueButton uygulamasını kullanarak öğrenin."
+    description: "Sorunsuz sanal işbirliği ve çevrim içi öğrenme deneyimleri sağlayan, güvenilir ve açık kaynaklı İnternet üzerinden görüşme çözümü Akademio Live uygulamasını kullanarak öğrenin."
   meeting:
     moderator_message: "Toplantıya katılmasını istediğiniz kişilere bu bağlantıyı gönderin: "
     access_code: "Erişim kodu: %{code}"
   email:
     activation:
       account_activation: Hesap etkinleştirme
-      welcome_to_bbb: BigBlueButton uygulamasına hoş geldiniz!
+      welcome_to_bbb: Akademio Live uygulamasına hoş geldiniz!
       get_started: "Başlamak için, lütfen aşağıdaki düğmeye tıklayarak hesabınızı etkinleştirin."
       activate_account: Hesabı etkinleştir
       link_expires: Bağlantı 24 saat sonra geçersiz olacak.
       if_link_expires: Bağlantının süresi geçerse oturum açarak yeni bir etkinleştirme e-postası alın.
     invitation:
-      invitation_to_join: BigBlueButton çağrısı
-      you_have_been_invited: "%{name} tarafından bir BigBlueButton hesabı açmaya çağrıldınız."
+      invitation_to_join: Akademio Live çağrısı
+      you_have_been_invited: "%{name} tarafından bir Akademio Live hesabı açmaya çağrıldınız."
       get_started: Hesap açmak için aşağıdaki düğmeye tıklayın ve yönergeleri izleyin.
       valid_invitation: Çağrı 7 gün boyunca geçerlidir.
       sign_up: Hesap aç
     new_user_signup:
-      new_user: Yeni BigBlueButton kullanıcı hesabı açılışı
-      new_user_description: Yeni bir kullanıcı BigBlueButton kullanmak için hesap açtı.
+      new_user: Yeni Akademio Live kullanıcı hesabı açılışı
+      new_user_description: Yeni bir kullanıcı Akademio Live kullanmak için hesap açtı.
       name: "Adı: %{name}"
       email: "E-posta adresi: %{email}"
       admin_panel: "Yönetim panosu"

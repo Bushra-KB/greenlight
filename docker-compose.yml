@@ -1,4 +1,12 @@
-version: '3'
+# Shared Docker network: hostnames `postgres` and `redis` resolve here.
+# Create once if missing: sudo docker network create akademio-gl-net
+# If DB/Redis already run elsewhere, attach them: sudo docker network connect akademio-gl-net postgres
+#   and same for redis.
+
+networks:
+  akademio-gl:
+    name: akademio-gl-net
+    external: true
 
 services:
   postgres:
@@ -10,6 +18,8 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=
+    networks:
+      - akademio-gl
 
   redis:
     image: redis:6.2-alpine3.20
@@ -17,13 +27,20 @@ services:
     restart: unless-stopped
     volumes:
       - ./data/redis/database_data:/data
+    networks:
+      - akademio-gl
 
   greenlight-v3:
     entrypoint: [bin/start]
-    image: bigbluebutton/greenlight:v3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: akademio-greenlight:fork
     container_name: greenlight-v3
     restart: unless-stopped
-    env_file: .env
+    env_file:
+      - path: .env
+        required: false
     ports:
       - 127.0.0.1:5050:3000
     logging:
@@ -33,3 +50,5 @@ services:
     depends_on:
       - postgres
       - redis
+    networks:
+      - akademio-gl

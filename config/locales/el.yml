@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 el:
   opengraph:
-    description: "Μάθετε να χρησιμοποιείτε το BigBlueButton, την αξιόπιστη λύση διαδικτυακής διάσκεψης ανοιχτού κώδικα, που επιτρέπει την απρόσκοπτη εικονική συνεργασία και τη διαδικτυακή εμπειρία μάθησης."
+    description: "Μάθετε να χρησιμοποιείτε το Akademio Live, την αξιόπιστη λύση διαδικτυακής διάσκεψης ανοιχτού κώδικα, που επιτρέπει την απρόσκοπτη εικονική συνεργασία και τη διαδικτυακή εμπειρία μάθησης."
   meeting:
     moderator_message: "Για αποστολή πρόσκλησης στη διάσκεψη, χρησιμοποιήστε τον σύνδεσμο:"
     access_code: "Κωδικός πρόσβασης: %{code}"
   email:
     activation:
       account_activation: Ενεργοποίηση λογαριασμού
-      welcome_to_bbb: Καλώς ήρθατε στο BigBlueButton!
+      welcome_to_bbb: Καλώς ήρθατε στο Akademio Live!
       get_started: "Για να ξεκινήσετε, παρακαλούμε ενεργοποιήστε τον λογαριασμό σας κάνοντας κλικ στο παρακάτω κουμπί."
       activate_account: Ενεργοποίηση λογαριασμού
       link_expires: Ο σύνδεσμος θα λήξη σε 24 ώρες.
       if_link_expires: "Εάν ο σύνδεσμος λήξει, συνδεθείτε και ζητήστε νέο email ενεργοποίησης."
     invitation:
-      invitation_to_join: Πρόσκληση στο BigBlueButton
-      you_have_been_invited: "Έχετε προσκληθεί να δημιουργήσετε λογαριασμό στο BigBlueButton από τον/την %{name}."
+      invitation_to_join: Πρόσκληση στο Akademio Live
+      you_have_been_invited: "Έχετε προσκληθεί να δημιουργήσετε λογαριασμό στο Akademio Live από τον/την %{name}."
       get_started: "Για εγγραφή, παρακαλούμε κάντε κλικ στο παρακάτω κουμπί και ακολουθήστε τα βήματα."
       valid_invitation: "Η πρόσκληση ισχύει για 7 ημέρες. "
       sign_up: Εγγραφή
     new_user_signup:
-      new_user: Εγγραφή νέου χρήστη BigBlueButton
-      new_user_description: Ένας νέος χρήστης έχει εγγραφεί για να χρησιμοποιήσει το BigBlueButton.
+      new_user: Εγγραφή νέου χρήστη Akademio Live
+      new_user_description: Ένας νέος χρήστης έχει εγγραφεί για να χρησιμοποιήσει το Akademio Live.
       name: "Όνομα: %{name}"
       email: "Email: %{email}"
       admin_panel: "Πίνακας ελέγχου διαχειριστή"

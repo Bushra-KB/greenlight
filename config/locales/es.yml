@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,21 +47,21 @@
 
 es:
   opengraph:
-    description: "BigBlueButton, la plataforma digital para video conferencias que permite una colaboración virtual perfecta y experiencias de aprendizaje en línea."
+    description: "Akademio Live, la plataforma digital para video conferencias que permite una colaboración virtual perfecta y experiencias de aprendizaje en línea."
   meeting:
     moderator_message: "Para invitar a alguien a la reunión, envíales este enlace:"
     access_code: "Código de acceso: %{code}"
   email:
     activation:
       account_activation: Activación de cuenta
-      welcome_to_bbb: ¡Bienvenido a BigBlueButton!
+      welcome_to_bbb: ¡Bienvenido a Akademio Live!
       get_started: "Para comenzar, active su cuenta haciendo clic en el botón de abajo."
       activate_account: Activar cuenta
       link_expires: El enlace caducará en 24 horas.
       if_link_expires: "Si el enlace caduca, inicie sesión y solicite un nuevo correo electrónico de activación."
     invitation:
-      invitation_to_join: Invitación de BigBlueButton
-      you_have_been_invited: "Tu contacto %{name} te ha invitado a crear una cuenta en BigBlueButton."
+      invitation_to_join: Invitación de Akademio Live
+      you_have_been_invited: "Tu contacto %{name} te ha invitado a crear una cuenta en Akademio Live."
       get_started: "Para registrarte, haz clic en el botón de abajo y sigue los pasos."
       valid_invitation: La invitación es válida durante 24 horas.
       sign_up: Registrarse

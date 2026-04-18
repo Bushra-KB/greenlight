@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,21 +47,21 @@
 
 et:
   opengraph:
-    description: "Õppige kasutades BigBlueButtonit, usaldusväärset avatud lähtekoodiga veebikonverentsilahendust, mis võimaldab sujuvat virtuaalset koostööd ja veebipõhiseid õppimiskogemusi."
+    description: "Õppige kasutades Akademio Liveit, usaldusväärset avatud lähtekoodiga veebikonverentsilahendust, mis võimaldab sujuvat virtuaalset koostööd ja veebipõhiseid õppimiskogemusi."
   meeting:
     moderator_message: "Selleks, et keegi koosolekule kutsuda, saatke neile see link:"
     access_code: "Ligipääsukood: %{code}"
   email:
     activation:
       account_activation: Konto aktiveerimine
-      welcome_to_bbb: Tere tulemast BigBlueButtonisse!
+      welcome_to_bbb: Tere tulemast Akademio Liveisse!
       get_started: Alustamiseks vajuta all olevate nupule ning aktiveeri oma konto.
       activate_account: Aktiveeri konto
       link_expires: Link kaotab kehtivuse 24 tunni pärast.
       if_link_expires: "Kui link aegub, logige sisse ja taotlege uut aktiveerimismeili."
     invitation:
-      invitation_to_join: BigBlueButtoni kutse
-      you_have_been_invited: "Oled %{name} poolt kutsutud BigBlueButtoni kasutamiseks kontot looma."
+      invitation_to_join: Akademio Livei kutse
+      you_have_been_invited: "Oled %{name} poolt kutsutud Akademio Livei kasutamiseks kontot looma."
       get_started: Registreerimiseks vajuta all olevat nuppu ning järgi juhiseid.
       valid_invitation: Kutse kehtib 24 tundi.
       sign_up: Registreeri

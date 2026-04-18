@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 fa_IR:
   opengraph:
-    description: با استفاده از BigBlueButton بیاموزید؛ راه‌حل متن‌باز و قابل اعتماد کنفرانس تحت وب که همکاری مجازی یکپارچه و تجربیات یادگیری آنلاین را امکان‌پذیر می‌کند.
+    description: با استفاده از Akademio Live بیاموزید؛ راه‌حل متن‌باز و قابل اعتماد کنفرانس تحت وب که همکاری مجازی یکپارچه و تجربیات یادگیری آنلاین را امکان‌پذیر می‌کند.
   meeting:
     moderator_message: "برای دعوت از افراد دیگر به این جلسه، این پیوند را برای آن‌ها ارسال کنید:"
     access_code: "کد دسترسی: %{code}"
   email:
     activation:
       account_activation: فعال‌سازی حساب کاربری
-      welcome_to_bbb: به BigBlueButton خوش آمدید.
+      welcome_to_bbb: به Akademio Live خوش آمدید.
       get_started: برای شروع، لطفا با کلیک بر روی دکمهٔ زیر حساب کاربری خود را فعال کنید.
       activate_account: فعال‌کردن حساب کاربری
       link_expires: این پیوند ۲۴ ساعت دیگر منقضی خواهد شد.
       if_link_expires: در صورت منقضی‌شدن پیوند، لطفا وارد شوید و درخواست یک رایانامهٔ فعال‌سازی جدید کنید.
     invitation:
-      invitation_to_join: دعوت‌نامهٔ BigBlueButton
-      you_have_been_invited: "شما توسط %{name} برای ایجاد حساب کاربری در BigBlueButton دعوت شده‌اید."
+      invitation_to_join: دعوت‌نامهٔ Akademio Live
+      you_have_been_invited: "شما توسط %{name} برای ایجاد حساب کاربری در Akademio Live دعوت شده‌اید."
       get_started: برای ثبت‌نام، لطفا روی دکمهٔ زیر کلیک کنید و گام‌ها را دنبال کنید.
       valid_invitation: دعوت‌نامه فقط ۷ روز اعتبار دارد.
       sign_up: ثبت‌نام
     new_user_signup:
-      new_user: ثبت نام کاربر جدید BigBlueButton
-      new_user_description: یک کاربر جدید برای استفاده از BigBlueButton ثبت نام کرده است.
+      new_user: ثبت نام کاربر جدید Akademio Live
+      new_user_description: یک کاربر جدید برای استفاده از Akademio Live ثبت نام کرده است.
       name: "نام: %{name}"
       email: "ایمیل: %{email}"
       admin_panel: "پنل مدیر کل"

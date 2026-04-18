@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,21 +47,21 @@
 
 pt:
   opengraph:
-    description: "Aprenda usando o BigBlueButton, a solução de videoconferência de código aberto confiável que permite colaboração virtual sem interrupções e experiências de aprendizagem online."
+    description: "Aprenda usando o Akademio Live, a solução de videoconferência de código aberto confiável que permite colaboração virtual sem interrupções e experiências de aprendizagem online."
   meeting:
     moderator_message: "Para convidar alguém para a reunião, envie a eles este link:"
     access_code: "Código de Acesso: %{code}"
   email:
     activation:
       account_activation: Ativação de conta
-      welcome_to_bbb: Bem-vindo ao BigBlueButton!
+      welcome_to_bbb: Bem-vindo ao Akademio Live!
       get_started: "Para começar, por favor ative sua conta clicando no botão abaixo."
       activate_account: Ativar Conta
       link_expires: O link irá expirar em 24 horas.
       if_link_expires: "Se o link expirar, por favor faça login e solicite um novo e-mail de ativação."
     invitation:
-      invitation_to_join: Convite do BigBlueButton
-      you_have_been_invited: "Você foi convidado a criar uma conta no BigBlueButton por %{name}."
+      invitation_to_join: Convite do Akademio Live
+      you_have_been_invited: "Você foi convidado a criar uma conta no Akademio Live por %{name}."
       get_started: "Para se inscrever, por favor clique no botão abaixo e siga os passos."
       valid_invitation: O convite é válido por 24 horas.
       sign_up: Inscreva-se

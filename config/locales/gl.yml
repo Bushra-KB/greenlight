@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 gl:
   opengraph:
-    description: "Aprenda usando BigBlueButton, a solución de conferencias web de código aberto de confianza que permite unha colaboración virtual perfecta e experiencias de aprendizaxe en liña."
+    description: "Aprenda usando Akademio Live, a solución de conferencias web de código aberto de confianza que permite unha colaboración virtual perfecta e experiencias de aprendizaxe en liña."
   meeting:
     moderator_message: "Para convidar a alguén á xuntanza, envíelle esta ligazón:"
     access_code: "Código de acceso: %{code}"
   email:
     activation:
       account_activation: Activación da conta
-      welcome_to_bbb: Dámoslle a benvida a BigBlueButton!
+      welcome_to_bbb: Dámoslle a benvida a Akademio Live!
       get_started: "Para comezar, active a súa conta premendo no botón de embaixo."
       activate_account: Activar a conta
       link_expires: A ligazón caducará en 24 horas.
       if_link_expires: "Se a ligazón caduca, acceda e solicite un novo correo de activación."
     invitation:
-      invitation_to_join: Convite a BigBlueButton
-      you_have_been_invited: "Vde. foi convidado por %{name} a crear unha conta de BigBlueButton por."
+      invitation_to_join: Convite a Akademio Live
+      you_have_been_invited: "Vde. foi convidado por %{name} a crear unha conta de Akademio Live por."
       get_started: "Para rexistrarse, prema no seguinte botón e siga os pasos."
       valid_invitation: O convite é válido durante 7 días.
       sign_up: Rexistrarse
     new_user_signup:
-      new_user: Novo rexistro de usuario de BigBlueButton
-      new_user_description: Rexistrouse un novo usuario para usar BigBlueButton.
+      new_user: Novo rexistro de usuario de Akademio Live
+      new_user_description: Rexistrouse un novo usuario para usar Akademio Live.
       name: "Nome: %{name}"
       email: "Correo-e: %{email}"
       admin_panel: "Panel de administración"

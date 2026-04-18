@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 eu:
   opengraph:
-    description: "BigBlueButton, paregabeko lankidetza birtual eta lineako ikaskuntza esperientziak ahalbidetzen dituen kode irekiko web-konferentzien irtenbide fidagarria."
+    description: "Akademio Live, paregabeko lankidetza birtual eta lineako ikaskuntza esperientziak ahalbidetzen dituen kode irekiko web-konferentzien irtenbide fidagarria."
   meeting:
     moderator_message: "Bilerara norbait gonbidatzeko, bidali esteka hau:"
     access_code: "Sarbide-kodea: %{code}"
   email:
     activation:
       account_activation: Kontua aktibatzea
-      welcome_to_bbb: Ongi etorri BigBlueButtonera!
+      welcome_to_bbb: Ongi etorri Akademio Liveera!
       get_started: "Hasteko, aktibatu zure kontua botoi honetan klik eginez."
       activate_account: Aktibatu kontua
       link_expires: Esteka 24 ordutan iraungiko da.
       if_link_expires: "Esteka iraungiz gero, hasi saioa eta eskatu aktibazio mezu berria."
     invitation:
-      invitation_to_join: BigBlueButton gonbidapena
-      you_have_been_invited: "%{name}(e)k BigBlueButtoneko kontu bat zabaltzera gonbidatu zaitu."
+      invitation_to_join: Akademio Live gonbidapena
+      you_have_been_invited: "%{name}(e)k Akademio Liveeko kontu bat zabaltzera gonbidatu zaitu."
       get_started: "Izena emateko, egin klik beheko botoian eta jarraitu urratsei."
       valid_invitation: Gonbita 24 ordukoa da.
       sign_up: Izena eman
     new_user_signup:
-      new_user: BigBlueButton-en erabiltzaile berria
-      new_user_description: Erabiltzaile berri batek BigBlueButton erabiltzeko izena eman du.
+      new_user: Akademio Live-en erabiltzaile berria
+      new_user_description: Erabiltzaile berri batek Akademio Live erabiltzeko izena eman du.
       name: "Izena: %{name}"
       email: "Eposta: %{email}"
       admin_panel: "Administratzaile-panela"

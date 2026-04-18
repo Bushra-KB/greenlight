@@ -1,6 +1,6 @@
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Akademio Live open source conferencing system - http://www.bigbluebutton.org/.
 #
-# Copyright (c) 2022 BigBlueButton Inc. and by respective authors (see below).
+# Copyright (c) 2022 Akademio Live Inc. and by respective authors (see below).
 #
 # This program is free software; you can redistribute it and/or modify it under the
 # terms of the GNU Lesser General Public License as published by the Free Software
@@ -47,27 +47,27 @@
 
 pl_PL:
   opengraph:
-    description: "Ucz się korzystając z BigBlueButton, zaufanego opensourcowego rozwiązania do konferencji internetowych, które umożliwia bezproblemową wirtualną współpracę i edukację online."
+    description: "Ucz się korzystając z Akademio Live, zaufanego opensourcowego rozwiązania do konferencji internetowych, które umożliwia bezproblemową wirtualną współpracę i edukację online."
   meeting:
     moderator_message: "Aby zaprosić kogoś na spotkanie, wyślij mu ten link:"
     access_code: "Kod Dostępu: %{code}"
   email:
     activation:
       account_activation: Aktywacja Konta
-      welcome_to_bbb: Witaj w BigBlueButton!
+      welcome_to_bbb: Witaj w Akademio Live!
       get_started: "Aby rozpocząć, aktywuj konto klikając przycisk poniżej."
       activate_account: Aktywuj Konto
       link_expires: Link wygaśnie w ciągu 24 godzin.
       if_link_expires: "Jeśli link wygaśnie, zaloguj się i poproś o nowy mail aktywacyjny."
     invitation:
-      invitation_to_join: Zaproszenie BigBlueButton
-      you_have_been_invited: "Użytkownik %{name}zaprosił Cię do utworzenia konta w BigBlueButton."
+      invitation_to_join: Zaproszenie Akademio Live
+      you_have_been_invited: "Użytkownik %{name}zaprosił Cię do utworzenia konta w Akademio Live."
       get_started: "Aby się zarejestrować, kliknij przycisk poniżej i postępuj zgodnie z instrukcjami."
       valid_invitation: Zaproszenie jest ważne przez 24 godziny.
       sign_up: Zapisz się
     new_user_signup:
-      new_user: Nowa Rejestracja Użytkownika BigBlueButton
-      new_user_description: Nowy użytkownik został zarejestrowany by korzystać z BigBlueButton.
+      new_user: Nowa Rejestracja Użytkownika Akademio Live
+      new_user_description: Nowy użytkownik został zarejestrowany by korzystać z Akademio Live.
       name: "Nazwa: %{name}"
       email: "E-mail: %{email}"
       admin_panel: "Panel Administratora"

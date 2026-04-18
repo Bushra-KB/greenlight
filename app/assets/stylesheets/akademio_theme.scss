@@ -17,6 +17,8 @@
   background-size: 48px 48px;
 }
 
+/* No border-bottom here: RB portaled dropdowns sit in a separate layer and the navbar’s
+   1px border was still painting on top of the menu. Separation uses shadow only. */
 #navbar.ak-header {
   min-height: 86px;
   position: fixed;
@@ -25,11 +27,11 @@
   right: 0;
   width: 100%;
   background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: none;
   backdrop-filter: blur(10px);
   z-index: 1035;
   overflow: visible;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
 }
 
 #navbar.ak-header.ak-header-app {
@@ -60,6 +62,8 @@
 .logo-wrapper {
   min-height: 90px;
   margin-bottom: 0.6rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .logo {
@@ -87,6 +91,8 @@
   color: #dc2626;
 }
 
+/* Mobile-only: full-width sheet under the bar. On sm+ the collapse is inline in the navbar;
+   keeping position:absolute + border here drew a full-width line over portaled dropdowns. */
 #navbar-menu {
   border: 1px solid #e2e8f0;
   border-radius: 0 0 12px 12px;
@@ -97,8 +103,27 @@
   right: 0;
 }
 
+@media (min-width: 576px) {
+  #navbar-menu {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: auto !important;
+    border-radius: 0 !important;
+  }
+}
+
 .ak-navbar-shell {
   gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.ak-navbar-shell .ak-user-dropdown-shell {
+  flex: 0 0 auto;
 }
 
 .ak-signedin-nav {
@@ -190,10 +215,13 @@
   z-index: 1040;
 }
 
-.ak-lang-dropdown-shell .dropdown-menu {
+/* Menu is portaled under <body>; do not scope under .ak-lang-dropdown-shell or z-index never applies */
+.ak-lang-dropdown-menu.dropdown-menu {
   min-width: 10.5rem;
-  margin-top: 0.55rem !important;
-  z-index: 1045;
+  margin-top: 0 !important;
+  /* Above #navbar.ak-header (1035), below Bootstrap modal backdrop (1050) */
+  z-index: 1048 !important;
+  isolation: isolate;
 }
 
 .ak-lang-dropdown-menu {
@@ -292,10 +320,11 @@
   color: #94a3b8;
 }
 
-.ak-user-dropdown-shell .dropdown-menu {
+.ak-user-dropdown-menu.dropdown-menu {
   min-width: 12.5rem;
-  margin-top: 0.55rem !important;
-  z-index: 1045;
+  margin-top: 0 !important;
+  z-index: 1048 !important;
+  isolation: isolate;
 }
 
 .ak-user-dropdown-menu {
@@ -303,7 +332,7 @@
   border-radius: 0.9rem;
   padding: 0.35rem;
   background: #ffffff;
-  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
 }
 
 .ak-user-dropdown-menu .dropdown-divider {

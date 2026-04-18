@@ -24,6 +24,7 @@ import {
   normalizeLanguageCode,
   persistLanguage,
 } from '../../helpers/LanguageHelper';
+import { fixedDropdownPopperConfig } from '../../helpers/dropdownPopperConfig';
 
 const NAV_COPY = {
   en: {
@@ -113,7 +114,7 @@ export default function NavbarNotSignedIn() {
             <span>{language.toUpperCase()}</span>
             <ChevronDownIcon className="ak-lang-chevron" aria-hidden="true" />
           </Dropdown.Toggle>
-          <Dropdown.Menu className="ak-lang-dropdown-menu">
+          <Dropdown.Menu className="ak-lang-dropdown-menu" popperConfig={fixedDropdownPopperConfig}>
             <Dropdown.Item active={language === 'en'} onClick={() => { changeLanguage('en'); }}>
               <span>English</span>
               <small>EN</small>

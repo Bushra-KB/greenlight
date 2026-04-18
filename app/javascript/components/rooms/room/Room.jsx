@@ -28,6 +28,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { useAuth } from '../../../contexts/auth/AuthProvider';
+import { fixedDropdownPopperConfig } from '../../../helpers/dropdownPopperConfig';
 import { localizeDayDateTimeString } from '../../../helpers/DateTimeHelper';
 import FeatureTabs from './FeatureTabs';
 import Spinner from '../../shared_components/utilities/Spinner';
@@ -278,7 +279,7 @@ export default function Room() {
                       />
                     )}
 
-                    <Dropdown.Menu className="dropdown-menu">
+                    <Dropdown.Menu className="dropdown-menu" popperConfig={fixedDropdownPopperConfig}>
                       {roomSettings?.data?.glModeratorAccessCode && (
                         <Dropdown.Item onClick={() => copyInvite('moderator')}>
                           {t('copy_moderator_code')}

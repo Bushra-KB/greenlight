@@ -35,6 +35,7 @@ import useUpdateUserStatus from '../../../hooks/mutations/admin/manage_users/use
 import RoleBadge from '../roles/RoleBadge';
 import { useAuth } from '../../../contexts/auth/AuthProvider';
 import { getCurrentLanguage } from '../../../helpers/LanguageHelper';
+import { fixedDropdownPopperConfig } from '../../../helpers/dropdownPopperConfig';
 
 export default function ManageUserRow({ user }) {
   const { t, i18n } = useTranslation();
@@ -64,7 +65,7 @@ export default function ManageUserRow({ user }) {
       <td className="border-start-0">
         <Dropdown className="float-end cursor-pointer">
           <Dropdown.Toggle className="hi-s" as={EllipsisVerticalIcon} />
-          <Dropdown.Menu>
+          <Dropdown.Menu popperConfig={fixedDropdownPopperConfig}>
             <Dropdown.Item as={Link} to={`/admin/users/edit/${user.id}`}>
               <PencilSquareIcon className="hi-s me-2" />
               {t('view')}

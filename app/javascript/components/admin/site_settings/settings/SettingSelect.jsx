@@ -18,6 +18,7 @@ import { Dropdown, Stack } from 'react-bootstrap';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { fixedDropdownPopperConfig } from '../../../../helpers/dropdownPopperConfig';
 
 export default function SettingSelect({
   defaultValue, title, description, children,
@@ -37,7 +38,7 @@ export default function SettingSelect({
             { defaultString?.props?.children }
             <ChevronDownIcon className="hi-s float-end" />
           </Dropdown.Toggle>
-          <Dropdown.Menu>
+          <Dropdown.Menu popperConfig={fixedDropdownPopperConfig}>
             {children}
           </Dropdown.Menu>
         </Dropdown>

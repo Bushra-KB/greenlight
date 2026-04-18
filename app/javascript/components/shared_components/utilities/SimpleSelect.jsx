@@ -18,6 +18,7 @@ import { Dropdown } from 'react-bootstrap';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { fixedDropdownPopperConfig } from '../../../helpers/dropdownPopperConfig';
 
 export default function SimpleSelect({ defaultValue, dropUp, children }) {
   // Get the currently selected option and set the dropdown toggle to that value
@@ -29,7 +30,7 @@ export default function SimpleSelect({ defaultValue, dropUp, children }) {
         { defaultString?.props?.children }
         <ChevronDownIcon className="hi-s float-end" />
       </Dropdown.Toggle>
-      <Dropdown.Menu>
+      <Dropdown.Menu popperConfig={fixedDropdownPopperConfig}>
         {children}
       </Dropdown.Menu>
     </Dropdown>

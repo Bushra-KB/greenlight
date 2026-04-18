@@ -23,6 +23,7 @@ import {
   Button, Stack, Dropdown,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { fixedDropdownPopperConfig } from '../../helpers/dropdownPopperConfig';
 import { useAuth } from '../../contexts/auth/AuthProvider';
 import Spinner from '../shared_components/utilities/Spinner';
 import UpdateRecordingForm from './forms/UpdateRecordingForm';
@@ -176,7 +177,7 @@ export default function RecordingRow({
           ? (
             <Dropdown className="float-end cursor-pointer">
               <Dropdown.Toggle className="hi-s" as={EllipsisVerticalIcon} />
-              <Dropdown.Menu>
+              <Dropdown.Menu popperConfig={fixedDropdownPopperConfig}>
                 <Dropdown.Item onClick={() => copyRecordingUrl.mutate({ record_id: recording.record_id })}>
                   <ClipboardDocumentIcon className="hi-s me-2" />
                   {t('recording.copy_recording_urls')}

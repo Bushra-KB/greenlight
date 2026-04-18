@@ -30,6 +30,7 @@ import { useAuth } from '../../../contexts/auth/AuthProvider';
 import ManageUsersInvitedRowPlaceHolder from './ManageUsersInvitedRowPlaceHolder';
 import useRevokeUserInvite from '../../../hooks/mutations/admin/manage_users/useRevokeUserInvite';
 import { getCurrentLanguage } from '../../../helpers/LanguageHelper';
+import { fixedDropdownPopperConfig } from '../../../helpers/dropdownPopperConfig';
 
 export default function InvitedUsersTable({ searchInput }) {
   const { t, i18n } = useTranslation();
@@ -81,7 +82,7 @@ export default function InvitedUsersTable({ searchInput }) {
                           <td className="text-dark border-0">
                             <Dropdown className="float-end cursor-pointer">
                               <Dropdown.Toggle className="hi-s" as={EllipsisVerticalIcon} />
-                              <Dropdown.Menu>
+                              <Dropdown.Menu popperConfig={fixedDropdownPopperConfig}>
                                 <Dropdown.Item onClick={() => revokeUserInvite.mutate(invitation.id)}>
                                   <ArchiveBoxXMarkIcon className="hi-s me-2" />
                                   {t('admin.manage_users.invited.revoke')}

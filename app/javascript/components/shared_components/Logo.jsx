@@ -28,7 +28,7 @@ export default function Logo({ size }) {
 
   // Logo can be small or regular size
   const sizeClass = size === 'small' ? 'small-logo cursor-pointer' : 'logo cursor-pointer';
-  const sizeWrapperClass = size === 'small' ? undefined : 'logo-wrapper d-flex justify-content-center';
+  const sizeWrapperClass = size === 'small' ? undefined : 'logo-wrapper d-flex justify-content-center mx-auto';
 
   if (isLoading) return <div className={sizeWrapperClass || 'small-logo'} />;
 

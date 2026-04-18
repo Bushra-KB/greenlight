@@ -23,6 +23,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import SelectContext from '../contexts/SelectContext';
 import { ACTIONS } from '../constants/SelectConstants';
 import Option from './Option';
+import { fixedDropdownPopperConfig } from '../../../helpers/dropdownPopperConfig';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -96,7 +97,7 @@ export default function Select({
           <ChevronDownIcon className="hi-s text-muted float-end" />
         </Dropdown.Toggle>
 
-        <Dropdown.Menu className="container-fluid">
+        <Dropdown.Menu className="container-fluid" popperConfig={fixedDropdownPopperConfig}>
           {children}
         </Dropdown.Menu>
       </Dropdown>

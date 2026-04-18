@@ -1307,7 +1307,7 @@ function useExtRooms() {
 }
 
 function ScheduleWorkspace({
-  copy, language, actorName, availableRooms, roomDirectory, allowGlobalScope = false,
+  copy, language, actorName, actorEmail, availableRooms, roomDirectory, allowGlobalScope = false,
 }) {
   const scheduleCopy = copy.schedulePanel;
   const roomOptions = useMemo(() => buildRoomOptions(availableRooms, roomDirectory, 'meeting'), [availableRooms, roomDirectory]);
@@ -1342,6 +1342,7 @@ function ScheduleWorkspace({
     room: '',
     title: '',
     description: '',
+    participantEmails: '',
     startAt: '',
     endAt: '',
     timezone: 'Europe/Istanbul',
@@ -1442,6 +1443,11 @@ function ScheduleWorkspace({
     }
 
     try {
+      const participantEmails = String(form.participantEmails || '')
+        .split(',')
+        .map((email) => email.trim())
+        .filter((email) => email && email.includes('@'));
+
       await fetchExtJson('/ext/future-meetings/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1453,6 +1459,8 @@ function ScheduleWorkspace({
           end_at: new Date(form.endAt).toISOString(),
           timezone: form.timezone || 'Europe/Istanbul',
           created_by: actorName,
+          created_by_email: actorEmail || '',
+          participant_emails: participantEmails,
           metadata: { source: 'greenlight-workspace' },
         }),
       });
@@ -1462,6 +1470,7 @@ function ScheduleWorkspace({
         ...prev,
         title: '',
         description: '',
+        participantEmails: '',
         startAt: '',
         endAt: '',
       }));
@@ -2370,6 +2379,16 @@ function ScheduleWorkspace({
               <textarea className="ak-workspace-textarea" value={form.description} onChange={(event) => setField('description', event.target.value)} />
             </label>
 
+            <label className="ak-workspace-field ak-workspace-field-span-2">
+              <span>Participant Emails (comma separated)</span>
+              <input
+                className="ak-workspace-input"
+                value={form.participantEmails}
+                onChange={(event) => setField('participantEmails', event.target.value)}
+                placeholder="student1@example.com, student2@example.com"
+              />
+            </label>
+
             <label className="ak-workspace-field">
               <span>{scheduleCopy.start}</span>
               <input type="datetime-local" className="ak-workspace-input" value={form.startAt} onChange={(event) => setField('startAt', event.target.value)} />
@@ -3061,9 +3080,35 @@ function EmbeddedRolesSection({ adminCopy }) {
   );
 }
 
-function AdminWorkspace({ copy, language, actorName }) {
+function AdminWorkspace({
+  copy, language, actorName, availableRooms = [], roomDirectory,
+}) {
   const adminCopy = copy.adminControls;
-  const { rooms, loading: roomsLoading, error: roomsError } = useExtRooms();
+  const { rooms: extRooms, loading: roomsLoading, error: roomsError } = useExtRooms();
+  const availableRoomOptions = useMemo(
+    () => buildRoomOptions(availableRooms, roomDirectory, 'meeting'),
+    [availableRooms, roomDirectory],
+  );
+  const rooms = useMemo(() => {
+    const allowedIds = new Set(availableRoomOptions.map((room) => room.id).filter(Boolean));
+    if (!allowedIds.size) return [];
+
+    const extById = new Map(
+      extRooms
+        .filter((room) => allowedIds.has(room.id))
+        .map((room) => [room.id, room]),
+    );
+
+    return availableRoomOptions.map((room) => {
+      const extRoom = extById.get(room.id);
+      const sessionsCount = extRoom?.sessionsCount || 0;
+      return {
+        id: room.id,
+        label: `${room.name || room.id} (${sessionsCount})`,
+        sessionsCount,
+      };
+    });
+  }, [availableRoomOptions, extRooms]);
   const [selectedRoom, setSelectedRoom] = useState('');
   const [recentMeetings, setRecentMeetings] = useState([]);
   const [selectedMeeting, setSelectedMeeting] = useState('');
@@ -3105,7 +3150,11 @@ function AdminWorkspace({ copy, language, actorName }) {
   const [auditRowsPerPage, setAuditRowsPerPage] = useState(10);
 
   useEffect(() => {
-    if (!selectedRoom && rooms.length) {
+    if (!rooms.length) {
+      if (selectedRoom) setSelectedRoom('');
+      return;
+    }
+    if (!selectedRoom || !rooms.some((room) => room.id === selectedRoom)) {
       setSelectedRoom(rooms[0].id);
     }
   }, [rooms, selectedRoom]);
@@ -4279,6 +4328,7 @@ export default function Rooms({ forcedView = null, hideTabs = false, embedded = 
             copy={copy}
             language={language}
             actorName={currentUser?.name || 'ops-admin'}
+            actorEmail={currentUser?.email || ''}
             availableRooms={rooms}
             roomDirectory={roomDirectoryByMeetingId}
             allowGlobalScope={canViewAllRoomsScope}
@@ -4290,7 +4340,13 @@ export default function Rooms({ forcedView = null, hideTabs = false, embedded = 
         );
       case 'admin':
         return (
-          <AdminWorkspace copy={copy} language={language} actorName={currentUser?.name || 'ops-admin'} />
+          <AdminWorkspace
+            copy={copy}
+            language={language}
+            actorName={currentUser?.name || 'ops-admin'}
+            availableRooms={rooms}
+            roomDirectory={roomDirectoryByMeetingId}
+          />
         );
       case 'overview':
       default:

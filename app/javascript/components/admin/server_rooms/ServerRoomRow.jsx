@@ -31,6 +31,7 @@ import { useAuth } from '../../../contexts/auth/AuthProvider';
 import useRecordingsReSync from '../../../hooks/mutations/admin/server_recordings/useRecordingsReSync';
 import { localizeDateTimeString } from '../../../helpers/DateTimeHelper';
 import { getCurrentLanguage } from '../../../helpers/LanguageHelper';
+import { fixedDropdownPopperConfig } from '../../../helpers/dropdownPopperConfig';
 
 export default function ServerRoomRow({ room }) {
   const {
@@ -80,7 +81,7 @@ export default function ServerRoomRow({ room }) {
       <td className="border-start-0">
         <Dropdown className="float-end cursor-pointer">
           <Dropdown.Toggle className="hi-s" as={EllipsisVerticalIcon} />
-          <Dropdown.Menu>
+          <Dropdown.Menu popperConfig={fixedDropdownPopperConfig}>
             { room.online
               ? (
                 <Dropdown.Item onClick={handleJoin}>

@@ -36,6 +36,7 @@ import {
   normalizeLanguageCode,
   persistLanguage,
 } from '../../helpers/LanguageHelper';
+import { fixedDropdownPopperConfig } from '../../helpers/dropdownPopperConfig';
 
 const LanguageToggle = React.forwardRef(({ children, onClick, className }, ref) => (
   <button
@@ -52,6 +53,22 @@ const LanguageToggle = React.forwardRef(({ children, onClick, className }, ref) 
 ));
 
 LanguageToggle.displayName = 'LanguageToggle';
+
+const UserMenuToggle = React.forwardRef(({ children, onClick, className }, ref) => (
+  <button
+    type="button"
+    ref={ref}
+    className={className}
+    onClick={(event) => {
+      event.preventDefault();
+      onClick(event);
+    }}
+  >
+    {children}
+  </button>
+));
+
+UserMenuToggle.displayName = 'UserMenuToggle';
 
 export default function NavbarSignedIn({ currentUser }) {
   const { t, i18n } = useTranslation();
@@ -140,7 +157,7 @@ export default function NavbarSignedIn({ currentUser }) {
             <span>{language.toUpperCase()}</span>
             <ChevronDownIcon className="ak-lang-chevron" aria-hidden="true" />
           </Dropdown.Toggle>
-          <Dropdown.Menu className="ak-lang-dropdown-menu">
+          <Dropdown.Menu className="ak-lang-dropdown-menu" popperConfig={fixedDropdownPopperConfig}>
             <Dropdown.Item active={language === 'en'} onClick={() => { changeLanguage('en'); }}>
               <span>English</span>
               <small>EN</small>
@@ -152,49 +169,43 @@ export default function NavbarSignedIn({ currentUser }) {
           </Dropdown.Menu>
         </Dropdown>
 
-        <div className="justify-content-end d-none d-sm-block">
-          <NavDropdown
-            title={(
-              <Stack direction="horizontal" gap={2} className="ak-user-dropdown-toggle-content">
-                <Avatar avatar={currentUser?.avatar} size="small" />
-                <span className="ms-1 ak-user-dropdown-name">{currentUser?.name}</span>
-                <ChevronDownIcon id="chevron-profile" className="hi-s ak-user-dropdown-chevron" />
-              </Stack>
-            )}
-            id="nav-user-dropdown"
-            className="d-inline-block ak-user-dropdown-shell"
-            menuClassName="ak-user-dropdown-menu"
-            align="end"
-          >
-
-            <NavDropdown.Item as={Link} to="/profile" className="ak-user-dropdown-item">
+        <Dropdown align="end" className="ak-user-dropdown-shell d-none d-sm-inline-block">
+          <Dropdown.Toggle as={UserMenuToggle} id="nav-user-dropdown">
+            <Stack direction="horizontal" gap={2} className="ak-user-dropdown-toggle-content">
+              <Avatar avatar={currentUser?.avatar} size="small" />
+              <span className="ms-1 ak-user-dropdown-name">{currentUser?.name}</span>
+              <ChevronDownIcon id="chevron-profile" className="hi-s ak-user-dropdown-chevron" />
+            </Stack>
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="ak-user-dropdown-menu" popperConfig={fixedDropdownPopperConfig}>
+            <Dropdown.Item as={Link} to="/profile" className="ak-user-dropdown-item">
               <IdentificationIcon className="hi-s me-3" />
               { t('user.profile.profile') }
-            </NavDropdown.Item>
+            </Dropdown.Item>
             {
               helpCenter
               && (
-                <NavDropdown.Item href={helpCenter} target="_blank" className="ak-user-dropdown-item">
+                <Dropdown.Item href={helpCenter} target="_blank" className="ak-user-dropdown-item">
                   <QuestionMarkCircleIcon className="hi-s me-3" />
                   {t('help_center')}
-                </NavDropdown.Item>
+                </Dropdown.Item>
               )
             }
             {
               hasAdminAccess
               && (
-                <NavDropdown.Item as={Link} to="/admin" className="ak-user-dropdown-item">
+                <Dropdown.Item as={Link} to="/admin" className="ak-user-dropdown-item">
                   <StarIcon className="hi-s me-3 mb-1" />
                   { t('admin.admin_panel') }
-                </NavDropdown.Item>
+                </Dropdown.Item>
               )
             }
-            <NavDropdown.Divider />
+            <Dropdown.Divider />
             <div className="px-2">
               <Button onClick={deleteSession.mutate} variant="brand" className="btn btn-sm w-100 my-2 ak-user-signout-btn">{t('authentication.sign_out')}</Button>
             </div>
-          </NavDropdown>
-        </div>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
     </>
   );
